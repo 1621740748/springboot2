@@ -1,12 +1,14 @@
 package com.cn.controller;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,5 +43,13 @@ public class MyController {
       String data = req.getParameter("data");
        JSONObject obj = JSON.parseObject(data, Feature.SupportNonPublicField);
        return "index";
+    }
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
+    @RequestMapping(value = "/greeting1")
+    @ResponseBody
+    public String  greeting1(@RequestBody City request) {
+        return "index";
     }
 }
